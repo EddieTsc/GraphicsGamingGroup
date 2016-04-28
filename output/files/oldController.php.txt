@@ -1,0 +1,35 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Eddie
+ * Date: 22/04/2016
+ * Time: 14:56
+ */
+
+namespace App\Http\Controllers;
+
+use DB;
+
+/**
+ * Class oldController
+ *
+ * manage "past" item
+ *
+ * @package App\Http\Controllers
+ */
+class oldController extends controller
+{
+    /**
+     * get all the project and members deleted
+     * display them
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index(){
+
+        $users = DB::table('users')->where('past','=',true)->get();
+        $projects = DB::table('projects')->where('past','=',true)->get();
+
+        return view('old',['users' => $users, 'projects' => $projects]);
+    }
+}
